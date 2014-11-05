@@ -1,0 +1,15 @@
+{
+  "name": "twitterApiGarden",
+  "version": "0.0.0",
+  "authors": [
+    "Kahne Raja <kahneraja@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "*",
+    "bootstrap": "*",
+    "backbone": "*",
+    "underscore": "*"
+  },  
+  "private": true
+}

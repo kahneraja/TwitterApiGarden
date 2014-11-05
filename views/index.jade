@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .row
+    .jumbotron
+      p Listing top 10 associated hashtags.
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          form
+            .input-group.input-group-lg
+              span.input-group-addon #
+              input.form-control
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-body
+          ul#hashtags.list-group
+
+  script#hashtag-template(type='text/backbone')
+    <%=hashtag%>
+    span.badge <%=count%> 
+      
+  
+  script(src="/javascripts/index.js")
+  script(src="/javascripts/hashtag.js")
+
+  script
+    $(function(){
+      TwitterApiGarden.init(); 
+    })
