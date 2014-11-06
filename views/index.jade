@@ -8,7 +8,9 @@ block content
         .panel-body
           form
             strong Hashtags Together.
-            p Helping you find associated hashtags that often show up together.
+            p Helping you find 
+              u(data-toggle='tooltip',data-placement='right',title='Hashtags that show up together.') associated hashtags
+              .
             .input-group.input-group-lg
               span.input-group-addon #
               input(placeholder='Enter a hashtag').form-control
@@ -32,5 +34,6 @@ block content
 
   script
     $(function(){
-      TwitterApiGarden.init(); 
+      TwitterApiGarden.init();
+      $("[data-toggle*='tooltip']").tooltip();
     })
