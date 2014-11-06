@@ -7,51 +7,48 @@ TwitterApiGarden.Hashtags = Backbone.Collection.extend({
   q: '',
   search: function (q) {
     this.q = q;
-    this.fetch({reset: true});
+    this.reset();
+    $('#loading').removeClass('hidden');
+    this.fetch({ reset: true });
   },
-  url : function() {
+  url: function () {
     return '/hashtag/' + this.q;
   }
 });
 
 TwitterApiGarden.HashtagFormView = Backbone.View.extend({
   initialize: function () {
+    var path = window.location.pathname.split('/').pop();
+    if (path) {
+      this.$el.find('input').val(path);
+      this.search();
+    }
 
   },
   events: {
     'submit': 'search'
   },
   search: function (e) {
-    e.preventDefault();
+    if (e)
+      e.preventDefault();
+    
     var q = this.$el.find('input').val();
     TwitterApiGarden.Hashtags.search(q);
   }
 });
 
-TwitterApiGarden.HashtagView = Backbone.View.extend({
-  tagName: 'li',
-  className: 'list-group-item',
-  render: function () {
-    var t = $('#hashtag-template').html();
-    var template = _.template(t);
-    var html = template(this.model.toJSON());
-    $(this.el).html(html);
-    return this;
-  }
-});
-
 TwitterApiGarden.HashtagsView = Backbone.View.extend({
   initialize: function () {
-    this.collection.bind('reset', this.render, this);
+    this.collection.bind('replace reset add remove', this.render, this);
   },
   render: function () {
-    var $hashtags = [];
-    this.collection.models[0].attributes.hashtags.each(function (h) {
-      var v = new TwitterApiGarden.HashtagView({ model: h });
-      $hashtags.push(v.render().el);
-    });
-
-    $(this.el).html($hashtags);
+    $(this.el).html();
+    $('#loading').addClass('hidden');
+    var report = _.first(this.collection.models);
+    var source = $("#report-template").html();
+    var template = Handlebars.compile(source);
+    var html = template(report);
+    $(this.el).html(html);
     return this;
   }
 });

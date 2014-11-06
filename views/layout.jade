@@ -1,17 +1,19 @@
 doctype 5
 html
   head
-    title= title
+    title="Hashtags Together by Kahne Raja"
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     script(src= "/bower_components/jquery/dist/jquery.min.js")
     script(src= "/bower_components/bootstrap/dist/js/bootstrap.min.js")
     script(src= "/bower_components/underscore/underscore.js")
     script(src= "/bower_components/backbone/backbone.js")
+    script(src= "/bower_components/handlebars/handlebars.min.js")
   body
     .container
-      .navbar.navbar-default
-        .navbar-header
-          a.navbar-brand Hashtag Alley
-
       block content
+      .row
+        .col-md-3
+        .col-md-6.text-right
+          a(href='http://www.twitter.com/kahneraja',target='_blank').btn
+            @kahneraja

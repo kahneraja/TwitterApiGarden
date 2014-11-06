@@ -20,7 +20,7 @@ exports.search = function (req, res) {
   var endDate = new Date();
   var pageIndex = 0;
   var pageSize = 100;
-  var maxPages = 10;
+  var maxPages = 15;
   var params = {
     count: pageSize,
     include_entities: false,
@@ -45,6 +45,7 @@ exports.search = function (req, res) {
       processTweets();
     else {
       params.max_id = _.chain(data.statuses).map(function (status) { return status.id }).min().value();
+      startDate = new Date();
       client.get('/search/tweets.json', params, getNextPage);
     }
 

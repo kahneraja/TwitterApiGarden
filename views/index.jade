@@ -2,27 +2,31 @@ extends layout
 
 block content
   .row
-    .jumbotron
-      p Listing top 10 associated hashtags.
-  .row
-    .col-md-12
+    .col-md-3
+    .col-md-6
       .panel.panel-default
         .panel-body
           form
+            strong Hashtags Together.
+            p Helping you find associated hashtags that often show up together.
             .input-group.input-group-lg
               span.input-group-addon #
-              input.form-control
+              input(placeholder='Enter a hashtag').form-control
   .row
-    .col-md-12
-      .panel.panel-default
-        .panel-body
-          ul#hashtags.list-group
+    .col-md-3
+    .col-md-6
+          #hashtags
+          #loading.text-center.hidden
+            h1.glyphicon.glyphicon-repeat.glyphicon-refresh-animate
 
-  script#hashtag-template(type='text/backbone')
-    <%=hashtag%>
-    span.badge <%=count%> 
-      
-  
+  script#report-template(type='text/x-handlebars-template')
+    ul.list-group
+      {{#each attributes.hashtags}}
+      li.list-group-item
+        a(href='{{hashtag}}') {{hashtag}}
+        span.badge {{count}}
+      {{/each}}
+
   script(src="/javascripts/index.js")
   script(src="/javascripts/hashtag.js")
 
