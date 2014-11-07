@@ -7,9 +7,8 @@ block content
       .panel.panel-default
         .panel-body
           form
-            strong Hashtags Together.
-            p Helping you find 
-              u(data-toggle='tooltip',data-placement='right',title='Hashtags that show up together.') associated hashtags
+            h1 Hashtags Together.
+            p Helping you find associated hashtags
               .
             .input-group.input-group-lg
               span.input-group-addon #
@@ -42,5 +41,4 @@ block content
   script
     $(function(){
       TwitterApiGarden.init();
-      $("[data-toggle*='tooltip']").tooltip();
     })
