@@ -20,7 +20,7 @@ exports.search = function (req, res) {
   var endDate = new Date();
   var pageIndex = 0;
   var pageSize = 100;
-  var maxPages = 15;
+  var maxPages = 5;
   var params = {
     count: pageSize,
     include_entities: false,
@@ -92,7 +92,7 @@ exports.search = function (req, res) {
     var hashtags = collectHashtags();
     var result = {
       report: report,
-      hashtags: _.first(hashtags, 11)
+      hashtags: _.first(hashtags, 6)
     };
     res.json(result);
     return this;
@@ -106,7 +106,8 @@ exports.search = function (req, res) {
     });
 
     hashtags = _.filter(hashtags, function (hashtag) {
-      return hashtag.length;
+      var length = hashtag.replace(' ', '').length;
+      return (length > 0);
     });
 
     return countHashtags(hashtags);

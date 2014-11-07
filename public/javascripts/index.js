@@ -20,5 +20,9 @@ TwitterApiGarden = {
   },
   start: function () {
     TwitterApiGarden.Trends.fetch({ reset: true });
+    var q = window.location.pathname.split('/').pop();
+    if (q) {
+      TwitterApiGarden.Hashtags.search(q);
+    }
   }
 };

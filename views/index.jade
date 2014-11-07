@@ -13,9 +13,11 @@ block content
             .input-group.input-group-lg
               span.input-group-addon #
               input(placeholder='Enter a hashtag').form-control
-      #hashtags
-      #loading.text-center.hidden
-        h1.glyphicon.glyphicon-repeat.glyphicon-refresh-animate
+      .panel.panel-default
+        .panel-body      
+          #hashtags
+          #loading.text-center.hidden
+            img(src='/images/loading.gif')
       .text-right
         h6
           a(href='http://www.kahneraja.com',target='_blank') kahneraja.com
@@ -24,12 +26,10 @@ block content
 
 
   script#report-template(type='text/x-handlebars-template')
-    ul.list-group
-      {{#each attributes.hashtags}}
-      li.list-group-item
-        a(href='{{hashtag}}') \#{{hashtag}}
-        span.badge {{count}}
-      {{/each}}
+    {{#each attributes.hashtags}}  
+    h2 {{@index}}. 
+      a(href='{{hashtag}}') \#{{hashtag}}
+    {{/each}}
 
   script#trend-template(type='text/x-handlebars-template')
     a(href='{{name}}') \#{{name}}

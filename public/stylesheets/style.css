@@ -21,3 +21,16 @@ a {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+#hashtags h2:first-child {
+  display:  none;  
+}
+
+a {
+  word-wrap: break-word;
+}
+
+a:hover { 
+    text-decoration: none;
+    
+}

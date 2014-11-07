@@ -21,9 +21,7 @@ TwitterApiGarden.HashtagFormView = Backbone.View.extend({
     var path = window.location.pathname.split('/').pop();
     if (path) {
       this.$el.find('input').val(path);
-      this.search();
     }
-
   },
   events: {
     'submit': 'search'
@@ -31,9 +29,9 @@ TwitterApiGarden.HashtagFormView = Backbone.View.extend({
   search: function (e) {
     if (e)
       e.preventDefault();
-    
+
     var q = this.$el.find('input').val();
-    TwitterApiGarden.Hashtags.search(q);
+    window.location.href = q;
   }
 });
 
