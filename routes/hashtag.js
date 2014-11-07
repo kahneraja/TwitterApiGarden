@@ -105,6 +105,10 @@ exports.search = function (req, res) {
         hashtags = hashtags.concat(tweet.hashtags);
     });
 
+    hashtags = _.filter(hashtags, function (hashtag) {
+      return hashtag.length;
+    });
+
     return countHashtags(hashtags);
   };
 

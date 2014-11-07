@@ -6,8 +6,10 @@
 var express = require('express')
   , routes = require('./routes')
   , hashtag = require('./routes/hashtag')
+  , trends = require('./routes/trends')
   , http = require('http')
-  , path = require('path');
+  , path = require('path'),
+  apicache = require('apicache').options({ debug: false, defaultDuration: 3600000, enabled: true}).middleware;;
 
 var app = express();
 
@@ -27,8 +29,8 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-
-app.get('/hashtag/:q', hashtag.search);
+app.get('/trends', apicache('5 minutes'), trends.index);
+app.get('/hashtag/:q', apicache('5 minutes'), hashtag.search);
 app.get('*', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -19,7 +19,8 @@
     "jade": "*",
     "express": "*",
     "underscore": "*",
-    "twitter": "*"
+    "twitter": "*",
+    "apicache":"*"
   },
   "noAnalyze": true,
   "license": "Apache",
